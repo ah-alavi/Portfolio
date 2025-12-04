@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Areeba Alavi - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+
+    /* Defines resueable CSS values */
+    :root {
+      --overlay-black: rgba(0, 0, 0, 0.7);
+      --pink: #ff9ac7;
+      --text-dark: #222;
+      --text-light: #fff;
+      --footer-bg: #3f3325;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Adding custom fonts */
+    @font-face {
+      font-family: "GoogleSans";
+      src: url("assets/googlesans.ttf") format("truetype");
+    }
+
+    @font-face {
+      font-family: "AreebaHandwriting";
+      src: url("assets/areeba_handwriting.ttf") format("truetype");
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-dark);
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Sections */
+
+    .section {
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 60px;
+    }
+
+    .section-inner {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      text-align: center;
+      z-index: 2; 
+    }
+
+    /* background sticker images */
+
+    .bg-sticker {
+      position: absolute;
+      width: 80px;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+    }
+
+    /* about stickers */
+    .about-sticker-1 { top: 12%; left: 6%; transform: rotate(-8deg); }
+    .about-sticker-2 { bottom: 10%; right: 12%; transform: rotate(5deg); }
+    .about-sticker-3 { top: 22%; right: 5%; transform: rotate(-4deg); }
+    .about-sticker-4 { bottom: 18%; left: 8%; transform: rotate(7deg); }
+    .about-sticker-5 { top: 5%; left: 40%; transform: rotate(11deg); }
+    .about-sticker-6 { bottom: 5%; right: 40%; transform: rotate(-9deg); }
+    .about-sticker-7 { top: 35%; left: 80%; transform: rotate(3deg); }
+    .about-sticker-8 { bottom: 30%; left: 25%; transform: rotate(-6deg); }
+
+    /* art stickers */
+    .art-sticker-1 { top: 8%; right: 8%; transform: rotate(10deg); }
+    .art-sticker-2 { bottom: 8%; left: 10%; transform: rotate(-6deg); }
+    .art-sticker-3 { top: 18%; left: 5%; transform: rotate(4deg); }
+    .art-sticker-4 { bottom: 16%; right: 6%; transform: rotate(-8deg); }
+    .art-sticker-5 { top: 4%; left: 55%; transform: rotate(-5deg); }
+    .art-sticker-6 { bottom: 6%; left: 55%; transform: rotate(7deg); }
+    .art-sticker-7 { top: 32%; right: 18%; transform: rotate(2deg); }
+    .art-sticker-8 { bottom: 28%; left: 20%; transform: rotate(-3deg); }
+
+    /* projects stickers */
+    .projects-sticker-1 { top: 14%; left: 12%; transform: rotate(-5deg); }
+    .projects-sticker-2 { bottom: 6%; right: 8%; transform: rotate(7deg); }
+    .projects-sticker-3 { top: 6%; right: 12%; transform: rotate(-6deg); }
+    .projects-sticker-4 { bottom: 14%; left: 6%; transform: rotate(4deg); }
+    .projects-sticker-5 { top: 4%; left: 50%; transform: rotate(9deg); }
+    .projects-sticker-6 { bottom: 8%; right: 45%; transform: rotate(-7deg); }
+    .projects-sticker-7 { top: 30%; left: 5%; transform: rotate(3deg); }
+    .projects-sticker-8 { bottom: 26%; right: 18%; transform: rotate(-3deg); }
+
+    /* sparkle trail for mouse */
+
+    #sparkleLayer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2000;
+    }
+
+    /* Makes the circles for the trail */
+    .sparkle {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0%, #ffd6f5 50%, #cd7cd8 100%);
+      opacity: 0.9;
+      transform: translate(-50%, -50%) scale(0.4);
+      animation: sparkle-pop 0.6s ease-out forwards;
+    }
+
+    /* Fades the sparkle */
+    @keyframes sparkle-pop {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.4) translateY(4px);
+      }
+      40% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8) translateY(-10px);
+      }
+    }
+
+    /* Hero section */
+
+    /* Sets the background images and fonts */
+    #hero {
+      background-image: url("assets/bluebg.jpg");
+      color: var(--text-light);
+      position: relative;
+      font-family: "GoogleSans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .hero-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      z-index: 2;
+      transform: translateY(-20px);
+    }
+
+    .hero-text-main {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 700;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+      transition: opacity 0.4s;
+    }
+
+    .hero-text-sub {
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      font-weight: 500;
+      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+      transition: opacity 0.4s;
+    }
+
+    .phone-wrapper {
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .phone-image {
+      width: min(320px, 70vw);
+      cursor: pointer;
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.7));
+      transition: transform 0.2s;
+    }
+
+    .phone-image:active {
+      transform: scale(0.98);
+    }
+
+    /* shaking phone */
+
+    .ringing {
+      animation: shake 1.2s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      15% { transform: translate(-3px, 2px) rotate(-2deg); }
+      30% { transform: translate(3px, -2px) rotate(2deg); }
+      45% { transform: translate(-2px, 3px) rotate(-1.5deg); }
+      60% { transform: translate(2px, -3px) rotate(1.5deg); }
+      75% { transform: translate(-2px, -1px) rotate(-1deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    /* hero stickers (when phone is clicked) */
+
+    .sticker-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 1; 
+    }
+
+    .sticker {
+      position: absolute;
+      width: 95px;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.2);
+      transition: top 0.9s, left 0.9s, opacity 0.9s, transform 0.9s;
+    }
+
+    .sticker.fly {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* intro text */
+
+    .intro-lines {
+      margin-top: -28px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-height: 80px;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .intro-lines.visible {
+      opacity: 1;
+    }
+
+    .intro-main {
+      font-size: clamp(2rem, 3vw, 2.4rem);
+      font-weight: 800;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .intro-sub {
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      font-weight: 600;
+    }
+
+    #typewriterWord {
+      color: #cd7cd8;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      margin-left: 2px;
+      animation: blink 0.8s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    /* scroll marker */
+
+    .scroll-indicator {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.9rem;
+      opacity: 0.85;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .scroll-arrow {
+      margin-top: 4px;
+      font-size: 1.4rem;
+      animation: bounceDown 1.4s infinite;
+    }
+
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(6px); opacity: 1; }
+    }
+
+    /* sound button */
+
+    .sound-toggle {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0, 0, 0, 0.45);
+      border: none;
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 3;
+    }
+
+    .sound-toggle:hover {
+      background: rgba(0, 0, 0, 0.75);
+    }
+
+    /* About Me section */
+
+    #about {
+      background-image: url("assets/creambg.jpg");
+      color: var(--text-dark);
+    }
+
+    .about-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .about-layout {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+      }
+    }
+
+    .lanyard-arrow-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .about-text {
+      font-family: "AreebaHandwriting", cursive;
+      font-size: 65px;
+      font-weight: 400;
+      color: #785261;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: -250px;
+      margin-left: -40px;
+    }
+
+    .about-arrow {
+      width: 170px;
+      transform: translateY(-90px);
+    }
+
+    .lanyard {
+      width: min(500px, 80vw);
+      cursor: pointer;
+      transition: transform 0.35s, filter 0.35s;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+    }
+
+    .lanyard:hover {
+      transform: scale(1.1);
+    }
+
+    /* About modal overlay */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay-black);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .about-modal {
+      background: var(--pink);
+      color: #2b1020;
+      border-radius: 24px;
+      padding: 24px 20px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 80vh;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow-y: auto;
+      font-family: "GoogleSans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .about-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .about-modal-header img {
+      border-radius: 18px;
+      width: 110px;
+      flex-shrink: 0;
+    }
+
+    .about-modal-title {
+      font-family: "AreebaHandwriting", cursive;
+      font-size: 2.1rem;
+      font-weight: 400;
+    }
+
+    .about-modal-subtitle {
+      font-size: 1rem;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .about-modal-body {
+      text-align: left;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    .about-modal-body h3 {
+      margin-top: 12px;
+      margin-bottom: 4px;
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+
+    .about-modal-body ul {
+      margin-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .about-modal-body li {
+      margin-bottom: 2px;
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      font-size: 1.7rem;
+      cursor: pointer;
+      font-weight: 800;
+      color: #3b1227;
+    }
+
+    /* Art Section */
+
+    #art {
+      background-image: url("assets/pinkbg.jpg");
+    }
+
+    /* Sketchbook image container */
+    .sketchbook-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sketchbook-frame {
+      position: relative;
+      width: min(820px, 95vw);
+      max-width: 820px;
+    }
+
+    .sketchbook-image {
+      width: 100%;
+    }
+
+    .art-title {
+      position: absolute;
+      top: 16%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "AreebaHandwriting", cursive;
+      font-size: 3rem;
+      color: #3b1230;
+      text-shadow: 0 2px 5px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Image carousel */
+    .carousel {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 68%;
+      background: #dedad767;
+      border-radius: 16px;
+      padding: 10px 10px 18px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+    }
+
+    .carousel-inner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 3 / 2;
+    }
+
+    .carousel-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: rgba(0, 0, 0, 0.45);
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 3;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(0, 0, 0, 0.7);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .carousel-btn.prev {
+      left: 8px;
+    }
+
+    .carousel-btn.next {
+      right: 8px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .carousel-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: 2px solid #3b1230;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: #3b1230;
+      transform: scale(1.2);
+    }
+
+    .art-caption {
+      margin-top: 6px;
+      font-family: "GoogleSans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.9rem;
+      color: #4b2840;
+      opacity: 0.9;
+    }
+
+    /* Projects section */
+
+    #projects {
+      background-image: url("assets/brownbg.jpg");
+      color: var(--text-light);
+    }
+
+    .projects-title-images {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0px;
+      margin-bottom: 20px;
+    }
+
+    .projects-title-images img {
+      width: 100px;
+      height: auto;
+      filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+    }
+
+    /* Rotates the title image */
+    .projects-title-images img:nth-child(1) { transform: rotate(-5deg); }
+    .projects-title-images img:nth-child(2) { transform: rotate(3deg); }
+    .projects-title-images img:nth-child(3) { transform: rotate(-2deg); }
+    .projects-title-images img:nth-child(4) { transform: rotate(4deg); }
+    .projects-title-images img:nth-child(5) { transform: rotate(-3deg); }
+    .projects-title-images img:nth-child(6) { transform: rotate(2deg); }
+    .projects-title-images img:nth-child(7) { transform: rotate(-4deg); }
+    .projects-title-images img:nth-child(8) { transform: rotate(3deg); }
+
+    .projects-subtitle {
+      font-family: "AreebaHandwriting", cursive;
+      font-size: 45px;
+      margin-bottom: 30px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 24px;
+      max-width: 700px;
+      margin: 60px auto 0;
+    }
+
+    .project-card {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      border-radius: 16px;
+      background: transparent;
+      transition: transform 0.25s;
+      overflow: visible;
+    }
+
+    .project-image {
+      width: 160px;
+      margin: 0 auto;
+      transition: transform 0.35s;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+    }
+
+    .project-card:nth-child(1) .project-image { transform: rotate(-4deg); }
+    .project-card:nth-child(2) .project-image { transform: rotate(3deg); }
+    .project-card:nth-child(3) .project-image { transform: rotate(-2deg); }
+    .project-card:nth-child(4) .project-image { transform: rotate(4deg); }
+
+    /* image grows when mouse hovers over it */
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.08) rotate(-4deg);
+    }
+
+    .project-card:hover .project-image {
+      transform: rotate(0deg) scale(1.12);
+    }
+
+    /* Label for each image */
+    .project-label {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #ffd6f5;
+      color: #5b1f4f;
+      font-family: "AreebaHandwriting", cursive;
+      font-size: 1.4rem;
+      font-weight: 400;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s, transform 0.35s;
+      white-space: nowrap;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+      z-index: 3;
+    }
+
+    .project-card:hover .project-label {
+      opacity: 1;
+      transform: translate(-50%, -4px);
+    }
+
+    /* Note for each image */
+    .project-note {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 190px;
+      padding: 10px 12px;
+      background: #fff8b8;
+      color: #3b2a1a;
+      border-radius: 6px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.35);
+      font-size: 0.85rem;
+      font-family: "GoogleSans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+      z-index: 4;
+    }
+
+    .project-card:hover .project-note {
+      opacity: 1;
+      transform: translateX(-50%) rotate(0deg);
+    }
+
+    /* Footer */
+
+    footer {
+      background: var(--footer-bg);
+      color: var(--text-light);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 0.95rem;
+      font-family: "GoogleSans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .footer-name {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .footer-name:hover {
+      text-decoration: underline;
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-socials img {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .footer-socials img:hover {
+      transform: scale(1.08);
+      filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    @media (max-width: 600px) {
+
+  /* makes all stickers smaller */
+  .sticker {
+    width: 70px;
+  }
+
+  .bg-sticker {
+    width: 60px;
+  }
+
+  .about-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-text {
+    order: 1;
+    margin-top: 0;
+    margin-left: 0;
+    font-size: 40px;
+  }
+
+  .lanyard-arrow-group {
+    order: 2;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .about-arrow {
+    display: none; /* hides the arrow on phone */
+  }
+
+  .sketchbook-frame {
+    width: 100vw;
+    max-width: 420px;
+  }
+
+  .sketchbook-image {
+    width: 110%;
+    transform: scaleY(1.12);
+    transform-origin: top center;
+  }
+
+  .art-title {
+    top: 13%;
+    font-size: 2.4rem;
+  }
+
+  .carousel {
+  top: 33%;  
+  width: 55%; 
+}
+
+
+  .projects-title-images {
+    flex-wrap: nowrap;
+  }
+
+  .projects-title-images img {
+    width: 9vw;        /* scaled for phone screen */
+    max-width: 70px;
+  }
+
+  .projects-subtitle {
+    margin-top: 60px; 
+    font-size: 36px; 
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+  <!-- sparkle mouse effect -->
+  <div id="sparkleLayer"></div>
+
+  <!-- phone ringtone -->
+  <!-- looped so it happens continuously -->
+  <audio id="ringtone" src="assets/ringing.mp3" loop></audio>
+
+  <!-- Hero section -->
+  <section id="hero" class="section">
+    <!-- to mute and unmute button -->
+    <button id="soundToggle" class="sound-toggle">🔊</button>
+
+    <div class="section-inner">
+      <div class="hero-content">
+        <!-- Text in section -->
+        <div id="hero-text-top" class="hero-text-main">What are you waiting for?</div>
+
+        <!-- Phone image -->
+        <div class="phone-wrapper">
+          <img
+            id="phoneImage"
+            class="phone-image ringing"
+            src="assets/phone_closed.png"
+            alt="Ringing phone - click to pick up"
+          />
+        </div>
+
+        <div id="hero-text-bottom" class="hero-text-sub">Pick up!</div>
+
+        <!-- typewriter effect on text -->
+        <div id="introLines" class="intro-lines" style="display:none;">
+          <div id="introMain" class="intro-main">Hi! I’m Areeba.</div>
+          <div class="intro-sub">
+            <span>I’m a </span>
+            <span id="typewriterWord"></span>
+            <span class="typewriter-cursor">|</span>
+          </div>
+        </div>
+
+        <div class="scroll-indicator">
+          <span>scroll</span>
+          <div class="scroll-arrow">⌄</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- stickers in the background -->
+    <div id="stickerLayer" class="sticker-layer">
+      <img src="assets/star1.png" alt="" class="sticker" />
+      <img src="assets/star2.png" alt="" class="sticker" />
+      <img src="assets/star3.png" alt="" class="sticker" />
+      <img src="assets/star4.png" alt="" class="sticker" />
+      <img src="assets/star5.png" alt="" class="sticker" />
+      <img src="assets/face1.png" alt="" class="sticker" />
+      <img src="assets/face2.png" alt="" class="sticker" />
+      <img src="assets/face3.png" alt="" class="sticker" />
+      <img src="assets/face4.png" alt="" class="sticker" />
+      <img src="assets/face5.png" alt="" class="sticker" />
+    </div>
+  </section>
+
+  <!-- About Me section -->
+  <section id="about" class="section">
+    <!-- background sticker images -->
+    <img src="assets/star2.png"  alt="" class="bg-sticker about-sticker-1">
+    <img src="assets/face4.png"  alt="" class="bg-sticker about-sticker-2">
+    <img src="assets/star3.png"  alt="" class="bg-sticker about-sticker-3">
+    <img src="assets/face1.png"  alt="" class="bg-sticker about-sticker-4">
+    <img src="assets/star5.png"  alt="" class="bg-sticker about-sticker-5">
+
+    <div class="section-inner">
+      <div class="about-layout">
+        <div class="lanyard-arrow-group">
+          <!-- Clicking on the Lanyard leads to the Modal view -->
+          <img id="lanyard" class="lanyard" src="assets/lanyard.png" alt="Lanyard with Areeba's info" />
+          <img class="about-arrow" src="assets/arrow.png" alt="Arrow pointing to lanyard" />
+        </div>
+        <div class="about-text">
+          <span>Learn about me!</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal View -->
+
+  <!-- Fullscreen overlay that darkens the rest of the screen -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="about-modal">
+      <div id="modalClose" class="modal-close">&times;</div>
+      <div class="about-modal-header">
+        <img src="assets/areeba.jpg" alt="Areeba portrait" />
+        <div>
+          <div class="about-modal-title">Hi, I’m Areeba Alavi</div>
+          <div class="about-modal-subtitle">Student · Artist · Designer</div>
+        </div>
+      </div>
+      <div class="about-modal-body">
+        <h3 style="font-family: 'AreebaHandwriting';">ABOUT ME</h3>
+        <p>
+          I’m Areeba Alavi, an Interactive Media student who loves blending creativity, organization, and design.
+          I enjoy working on projects where I can be hands-on — whether that’s managing files, coordinating tasks,
+          researching, or creating visuals that communicate clearly. I’m detail-oriented, I learn quickly, and I like
+          making sure things run smoothly behind the scenes.
+        </p>
+
+        <h3 style="font-family: 'AreebaHandwriting';">TECHNICAL SKILLS</h3>
+        <ul>
+          <li>Adobe Illustrator</li>
+          <li>Canva</li>
+          <li>Microsoft Office Suite</li>
+          <li>Google Suite</li>
+        </ul>
+
+        <h3 style="font-family: 'AreebaHandwriting';">CORE SKILLS</h3>
+        <ul>
+          <li>Research &amp; Information Management</li>
+          <li>Team Collaboration</li>
+          <li>Detail-Oriented Workflow</li>
+        </ul>
+
+        <h3 style="font-family: 'AreebaHandwriting';">EXPERIENCE</h3>
+        <ul>
+          <li>Creatives Head – HackAD</li>
+          <li>Crisis Team Manager – Alyx Society</li>
+          <li>Graphic Designer – Alyx Society</li>
+          <li>Volunteer – Tarrahum for Gaza</li>
+        </ul>
+
+        <h3 style="font-family: 'AreebaHandwriting';">EDUCATION</h3>
+        <p>
+          <strong>New York University Abu Dhabi</strong><br />
+          Bachelor of Arts in Interactive Media (Minor in Visual Art &amp; Design)<br />
+          Expected Graduation: 2028
+        </p>
+        <p>
+          <strong>Pristine Private School, Dubai</strong><br />
+          A-Levels in English Language, IT, Mathematics<br />
+          Cambridge Outstanding Learner Award – Top in UAE for AS-Level English Language
+        </p>
+
+        <h3 style="font-family: 'AreebaHandwriting';">LANGUAGES</h3>
+        <ul>
+          <li>English</li>
+          <li>Urdu</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Art section -->
+  <section id="art" class="section">
+    <!-- background sticker images -->
+    <img src="assets/star5.png"  alt="" class="bg-sticker art-sticker-1">
+    <img src="assets/face2.png"  alt="" class="bg-sticker art-sticker-2">
+    <img src="assets/star4.png"  alt="" class="bg-sticker art-sticker-3">
+    <img src="assets/face5.png"  alt="" class="bg-sticker art-sticker-4">
+    <img src="assets/star1.png"  alt="" class="bg-sticker art-sticker-5">
+    <img src="assets/face3.png"  alt="" class="bg-sticker art-sticker-6">
+
+    <div class="section-inner">
+      <!-- contains the book and image carousel -->
+      <div class="sketchbook-wrapper">
+        <div class="sketchbook-frame">
+          <img class="sketchbook-image" src="assets/sketchbook.png" alt="Sketchbook" />
+          <div class="art-title">My Art</div>
+
+          <!-- Carousel controls -->
+          <div class="carousel">
+            <div class="carousel-inner">
+              <img id="carouselImage" class="carousel-image" src="assets/art1.jpg" alt="Artwork 1" />
+              <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous artwork">&#8249;</button>
+              <button class="carousel-btn next" id="carouselNext" aria-label="Next artwork">&#8250;</button>
+            </div>
+            <div id="carouselDots" class="carousel-dots"></div>
+            <div id="artCaption" class="art-caption"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects section -->
+  <section id="projects" class="section">
+    <!-- Background sricker images -->
+    <img src="assets/star3.png"  alt="" class="bg-sticker projects-sticker-1">
+    <img src="assets/face5.png"  alt="" class="bg-sticker projects-sticker-2">
+    <img src="assets/star4.png"  alt="" class="bg-sticker projects-sticker-3">
+    <img src="assets/face2.png"  alt="" class="bg-sticker projects-sticker-4">
+
+    <div class="section-inner">
+      <!-- Images to spell out "Projects" -->
+      <div class="projects-title-images">
+        <img src="assets/p.png" alt="P" />
+        <img src="assets/r.png" alt="R" />
+        <img src="assets/o.png" alt="O" />
+        <img src="assets/j.png" alt="J" />
+        <img src="assets/e.png" alt="E" />
+        <img src="assets/c.png" alt="C" />
+        <img src="assets/t.png" alt="T" />
+        <img src="assets/s.png" alt="S" />
+      </div>
+      <div class="projects-subtitle">
+        click to discover my other projects!
+      </div>
+
+      <div class="projects-grid">
+        <!-- Holds all the project images -->
+        <a href="#" target="_blank" class="project-card" id="projectVideo">
+          <!-- Label that appears on each image -->
+          <div class="project-label">Video</div>
+          <!-- Note that appears on each image -->
+          <div class="project-note">
+            A video project, meant to explore the hidden facets of every person
+          </div>
+          <img src="assets/camera.png" alt="Video project" class="project-image" />
+        </a>
+
+        <a href="#" target="_blank" class="project-card" id="projectComic">
+          <div class="project-label">Comic</div>
+          <div class="project-note">
+            A lighthearted interactive comic about silly jokes.
+          </div>
+          <img src="assets/book.png" alt="Comic project" class="project-image" />
+        </a>
+
+        <a href="#" target="_blank" class="project-card" id="projectSound">
+          <div class="project-label">Sound</div>
+          <div class="project-note">
+            A sound based murder mystery story
+          </div>
+          <img src="assets/headphones.png" alt="Sound project" class="project-image" />
+        </a>
+
+        <a href="#" target="_blank" class="project-card" id="projectFilm">
+          <div class="project-label">30 minute film festival</div>
+          <div class="project-note">
+            A website advertising our short film, filmed with 30 minutes
+          </div>
+          <img src="assets/movie.png" alt="Film festival project" class="project-image" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer bar -->
+  <footer>
+    <!-- clicking it returns you to the top of the page -->
+    <div id="footerName" class="footer-name">Areeba Alavi</div>
+    <div class="footer-socials">
+      <!-- links to social medias -->
+      <a href="#" id="instagramLink" target="_blank" aria-label="Instagram">
+        <img src="assets/instagram.png" alt="Instagram" />
+      </a>
+      <a href="#" id="linkedinLink" target="_blank" aria-label="LinkedIn">
+        <img src="assets/linkedin.png" alt="LinkedIn" />
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    /* JS unchanged – same as your version */
+    var phoneImage = document.getElementById("phoneImage");
+    var ringtone = document.getElementById("ringtone");
+    var heroTextTop = document.getElementById("hero-text-top");
+    var heroTextBottom = document.getElementById("hero-text-bottom");
+    var stickerLayer = document.getElementById("stickerLayer");
+    var introLines = document.getElementById("introLines");
+    var introMain = document.getElementById("introMain");
+    var typewriterWordEl = document.getElementById("typewriterWord");
+    var soundToggle = document.getElementById("soundToggle");
+
+    var phoneOpened = false;
+    var ringtoneStarted = false;
+
+    window.addEventListener("load", function () {
+      ringtone.volume = 0.9;
+      ringtone.play().then(function () {
+        ringtoneStarted = true;
+      }).catch(function () {});
+    });
+
+    function startRingtoneOnFirstClick() {
+      if (!ringtoneStarted && !phoneOpened) {
+        ringtone.play().then(function () {
+          ringtoneStarted = true;
+        }).catch(function () {});
+      }
+      window.removeEventListener("click", startRingtoneOnFirstClick);
+    }
+
+    window.addEventListener("click", startRingtoneOnFirstClick);
+
+    soundToggle.addEventListener("click", function () {
+      if (ringtone.muted || ringtone.volume === 0) {
+        ringtone.muted = false;
+        ringtone.volume = 0.9;
+        soundToggle.textContent = "🔊";
+      } else {
+        ringtone.muted = true;
+        soundToggle.textContent = "🔇";
+      }
+    });
+
+    var stickers = stickerLayer.querySelectorAll(".sticker");
+    var stickerTargets = [
+      { top: "10%", left: "15%" },
+      { top: "18%", left: "75%" },
+      { top: "32%", left: "25%" },
+      { top: "55%", left: "85%" },
+      { top: "78%", left: "20%" },
+      { top: "14%", left: "40%" },
+      { top: "42%", left: "8%" },
+      { top: "48%", left: "60%" },
+      { top: "82%", left: "70%" },
+      { top: "30%", left: "88%" }
+    ];
+
+    phoneImage.addEventListener("click", function () {
+      if (phoneOpened) {
+        return;
+      }
+      phoneOpened = true;
+
+      phoneImage.src = "assets/phone_open.png";
+      phoneImage.classList.remove("ringing");
+      ringtone.pause();
+      ringtone.currentTime = 0;
+
+      heroTextTop.style.opacity = "0";
+      heroTextBottom.style.opacity = "0";
+      heroTextTop.style.visibility = "hidden";
+      heroTextBottom.style.visibility = "hidden";
+
+      introLines.style.display = "flex";
+      setTimeout(function () {
+        introLines.classList.add("visible");
+        introMain.classList.add("fade-in");
+      }, 20);
+
+      var hero = document.getElementById("hero");
+      var heroRect = hero.getBoundingClientRect();
+      var phoneRect = phoneImage.getBoundingClientRect();
+      var startTop = phoneRect.top + phoneRect.height / 2 - heroRect.top;
+      var startLeft = phoneRect.left + phoneRect.width / 2 - heroRect.left;
+
+      for (var i = 0; i < stickers.length; i++) {
+        var sticker = stickers[i];
+        sticker.style.top = startTop + "px";
+        sticker.style.left = startLeft + "px";
+        sticker.getBoundingClientRect();
+        var target = stickerTargets[i % stickerTargets.length];
+        sticker.style.top = target.top;
+        sticker.style.left = target.left;
+        sticker.classList.add("fly");
+      }
+
+      startTypewriter();
+    });
+
+    function startTypewriter() {
+      var words = ["Student", "Artist", "Designer"];
+      var wordIndex = 0;
+      var charIndex = 0;
+      var isDeleting = false;
+
+      var typingSpeed = 120;
+      var erasingSpeed = 80;
+      var holdTime = 900;
+
+      function type() {
+        var currentWord = words[wordIndex];
+
+        if (!isDeleting) {
+          if (charIndex < currentWord.length) {
+            typewriterWordEl.textContent += currentWord.charAt(charIndex);
+            charIndex++;
+            setTimeout(type, typingSpeed);
+          } else {
+            setTimeout(function () {
+              isDeleting = true;
+              type();
+            }, holdTime);
+          }
+        } else {
+          if (charIndex > 0) {
+            charIndex--;
+            typewriterWordEl.textContent = currentWord.substring(0, charIndex);
+            setTimeout(type, erasingSpeed);
+          } else {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            setTimeout(type, 300);
+          }
+        }
+      }
+
+      type();
+    }
+
+    var scrollIndicator = document.querySelector(".scroll-indicator");
+    var aboutSection = document.getElementById("about");
+    scrollIndicator.addEventListener("click", function () {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    });
+
+    var lanyard = document.getElementById("lanyard");
+    var modalOverlay = document.getElementById("modalOverlay");
+    var modalClose = document.getElementById("modalClose");
+
+    lanyard.addEventListener("click", function () {
+      modalOverlay.classList.add("active");
+    });
+
+    modalClose.addEventListener("click", function () {
+      modalOverlay.classList.remove("active");
+    });
+
+    modalOverlay.addEventListener("click", function (e) {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove("active");
+      }
+    });
+
+    var artImages = [
+      "assets/art1.jpg",
+      "assets/art2.jpg",
+      "assets/art3.jpg",
+      "assets/art4.jpg",
+      "assets/art5.jpg",
+      "assets/art6.jpg",
+      "assets/art7.jpg"
+    ];
+
+    var artCaptions = [
+      "India Ink on paper",
+      "Girl With the Pearl Earring",
+      "Graphite & Charcoal",
+      "Graphite on paper",
+      "Graphite Statue Study",
+      "Graphite Portrait Study",
+      "Colored Pencil on paper"
+    ];
+
+    var carouselImage = document.getElementById("carouselImage");
+    var carouselPrev = document.getElementById("carouselPrev");
+    var carouselNext = document.getElementById("carouselNext");
+    var carouselDotsContainer = document.getElementById("carouselDots");
+    var artCaptionEl = document.getElementById("artCaption");
+    var currentArtIndex = 0;
+
+    function renderDots() {
+      carouselDotsContainer.innerHTML = "";
+      for (var i = 0; i < artImages.length; i++) {
+        var dot = document.createElement("button");
+        dot.className = "carousel-dot";
+        if (i === currentArtIndex) {
+          dot.classList.add("active");
+        }
+        (function (index) {
+          dot.addEventListener("click", function () {
+            currentArtIndex = index;
+            updateCarousel();
+          });
+        })(i);
+        carouselDotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateCarousel() {
+      carouselImage.src = artImages[currentArtIndex];
+      carouselImage.alt = artCaptions[currentArtIndex] || "Artwork";
+      artCaptionEl.textContent = artCaptions[currentArtIndex] || "";
+      renderDots();
+    }
+
+    carouselPrev.addEventListener("click", function () {
+      currentArtIndex = (currentArtIndex - 1 + artImages.length) % artImages.length;
+      updateCarousel();
+    });
+
+    carouselNext.addEventListener("click", function () {
+      currentArtIndex = (currentArtIndex + 1) % artImages.length;
+      updateCarousel();
+    });
+
+    updateCarousel();
+
+    var footerName = document.getElementById("footerName");
+    footerName.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    document.getElementById("projectVideo").href =
+      "https://ah-alavi.github.io/Video_Project/";
+    document.getElementById("projectComic").href =
+      "https://jamayccaaa.github.io/comics_/";
+    document.getElementById("projectSound").href =
+      "https://amikaehuh.github.io/SOUNDWEB/";
+    document.getElementById("projectFilm").href =
+      "https://ah-alavi.github.io/30mmf-project/";
+
+    document.getElementById("instagramLink").href =
+      "https://www.instagram.com/areebaphobic/";
+    document.getElementById("linkedinLink").href =
+      "https://www.linkedin.com/in/areeba-alavi/";
+
+    var sparkleLayer = document.getElementById("sparkleLayer");
+    var lastSparkleTime = 0;
+
+    window.addEventListener("mousemove", function (e) {
+      var now = Date.now();
+      if (now - lastSparkleTime < 25) {
+        return;
+      }
+      lastSparkleTime = now;
+
+      var sparkle = document.createElement("span");
+      sparkle.className = "sparkle";
+      sparkle.style.left = e.clientX + "px";
+      sparkle.style.top = e.clientY + "px";
+
+      sparkleLayer.appendChild(sparkle);
+
+      sparkle.addEventListener("animationend", function () {
+        sparkle.remove();
+      });
+    });
+  </script>
+</body>
+</html>
